@@ -24,9 +24,7 @@ const ProductPage = () => {
         const combinedReviews = [...(data.reviews || []), ...savedReviews];
 
         // Get rid of the duplicationszzz
-        const uniqueReviews = Array.from(
-          new Map(combinedReviews.map((r) => [r.comment, r])).values()
-        );
+        const uniqueReviews = Array.from(new Map(combinedReviews.map((r) => [`${r.reviewerName}-${r.comment}-${r.date}`, r])).values());
 
         setProduct({
           ...data,
@@ -91,7 +89,7 @@ const ProductPage = () => {
         comment: description,
         reviewerName: userName,
         reviewerEmail: "", // Optionally add email or leave blank
-        date: new Date().toLocaleDateString(),
+        date: new Date().toISOString(),
       },
     ];
 
