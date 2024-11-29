@@ -21,7 +21,17 @@ const ProductPage = () => {
       .then((data) => {
         // Load reviews from LocalStorage if available, otherwise use an empty array
         const savedReviews = JSON.parse(localStorage.getItem(`product-${id}-reviews`)) || [];
-        setProduct({ ...data, reviews: savedReviews });
+        const combinedReviews = [...(data.reviews || []), ...savedReviews];
+
+        // Get rid of the duplicationszzz
+        const uniqueReviews = Array.from(
+          new Map(combinedReviews.map((r) => [r.comment, r])).values()
+        );
+
+        setProduct({
+          ...data,
+          reviews: uniqueReviews,
+        });
         setLoading(false);
       })
       .catch((error) => {
