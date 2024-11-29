@@ -1,65 +1,61 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import Cookies from "js-cookie"; // Import js-cookie for cookies management
 import "../styles/HomePage.css";
 
-const HomePage = () => {
+const HomePage = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [categories] = useState([
-    "All Categories",
-    "Beauty",
-    "Fragrances",
-    "Furniture",
-    "Groceries",
-  ]);
-  const [selectedCategory, setSelectedCategory] = useState(
-    Cookies.get("selectedCategory") || "All Categories" // Load selected category from cookies or default to "All Categories"
-  );
+  const [categories] = useState(["All Categories", "Beauty", "Fragrances", "Furniture", "Groceries"]);
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
   useEffect(() => {
-    // Check if products are already in localStorage
-    const storedProducts = localStorage.getItem("products");
-    if (storedProducts) {
-      const parsedProducts = JSON.parse(storedProducts);
-      setProducts(parsedProducts);
-      setFilteredProducts(
-        selectedCategory === "All Categories"
-          ? parsedProducts
-          : parsedProducts.filter(
-              (product) =>
-                product.category.toLowerCase() === selectedCategory.toLowerCase()
-            )
-      );
-    } else {
-      // Fetch product data if not present in localStorage
-      fetch("https://dummyjson.com/products")
-        .then((res) => res.json())
-        .then((data) => {
+    // Fetch product data
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        // Ensure that products are correctly fetched
+        if (data && data.products) {
           setProducts(data.products);
           setFilteredProducts(data.products); // Initially display all products
-          localStorage.setItem("products", JSON.stringify(data.products)); // Save products to localStorage
-        });
-    }
-  }, [selectedCategory]);
+        } else {
+          console.error("Error: No products found in the response.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []); // This effect only runs once when the component mounts
 
-  const filterByCategory = (category) => {
-    setSelectedCategory(category);
-    Cookies.set("selectedCategory", category, { expires: 7 }); // Save selected category to cookies
-    if (category === "All Categories") {
-      setFilteredProducts(products);
-    } else {
-      setFilteredProducts(
-        products.filter(
-          (product) => product.category.toLowerCase() === category.toLowerCase()
-        )
+  useEffect(() => {
+    // Filter products based on category and search query
+    let filtered = products;
+
+    // Filter by category
+    if (selectedCategory && selectedCategory !== "All Categories") {
+      filtered = filtered.filter((product) =>
+        product.category && product.category.toLowerCase().includes(selectedCategory.toLowerCase())
       );
     }
+
+    // Filter by search query (case-insensitive search for products by title)
+    if (searchQuery) {
+      filtered = filtered.filter((product) =>
+        product.title && product.title.toLowerCase().includes(searchQuery.toLowerCase()) // Ensure 'title' exists
+      );
+    }
+
+    setFilteredProducts(filtered); // Update the filtered products state
+  }, [searchQuery, selectedCategory, products]); // Re-run filtering whenever these dependencies change
+
+  const filterByCategory = (category) => {
+    setSelectedCategory(category); // Update selected category and re-filter products
   };
 
   return (
     <div className="homepage">
       <h1>Products</h1>
+
+      {/* Category Filter */}
       <div className="dropdown-container">
         <select
           id="category-select"
@@ -73,10 +69,16 @@ const HomePage = () => {
           ))}
         </select>
       </div>
+
+      {/* Display Filtered Products */}
       <div className="product-list">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {filteredProducts.length === 0 ? (
+          <p>No products found</p> // Message if no products match the filters
+        ) : (
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )}
       </div>
     </div>
   );
