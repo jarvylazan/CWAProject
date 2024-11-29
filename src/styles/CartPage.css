@@ -1,48 +1,107 @@
-/* Cart Page styles */
 .cart-page {
-    padding: 30px;
-  }
-  
-  .cart-page h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  .cart-item h3 {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .cart-item p {
-    font-size: 16px;
-    color: #666;
-    margin: 0;
-  }
-  
-  .cart-item button {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cart-item button:hover {
-    background-color: #c82333;
-  }
-  
-  .cart-page h2 {
-    margin-top: 20px;
-    font-size: 20px;
-    color: #333;
-  }
-  
+  padding: 20px;
+}
+
+.cart-page h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.cart-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  width: 45%;
+  max-width: 400px;
+}
+
+.cart-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.cart-item-details h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.cart-item-details p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.quantity-controls button {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.quantity-controls span {
+  font-size: 1rem;
+  padding: 0 10px;
+}
+
+.cart-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.view-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #6c757d;
+}

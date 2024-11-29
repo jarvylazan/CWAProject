@@ -1,74 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/ProductDetailPage.css";
+import "../styles/ProductDetail.css";
 
 const ProductPage = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Fetch the product details based on the ID
   useEffect(() => {
+    // Fetch the product details using the ID from the URL
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
-      .then((data) => setProduct(data))
-      .catch((err) => console.error("Error fetching product:", err));
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch product details:", error);
+        setLoading(false);
+      });
   }, [id]);
 
-  if (!product) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
-  }
+  if (loading) return <p>Loading...</p>;
+  if (!product) return <p>Product not found!</p>;
+
+  const addToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedCart = [...cart, product];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    alert(`${product.title} added to cart!`);
+  };
 
   return (
-    <div className="product-detail-page">
-      <div className="product-detail-container">
+    <div className="product-page">
+      <div className="product-detail">
         <img
-          src={product.thumbnail}
+          className="product-detail-image"
+          src={product.images[0]} // Use `images` array from the API
           alt={product.title}
-          className="product-image"
         />
-        <div className="product-details">
+        <div className="product-info">
           <h1>{product.title}</h1>
           <p className="product-description">{product.description}</p>
-          <div className="price-section">
-            <span className="price">${product.price.toFixed(2)}</span>
-            {product.discountPercentage && (
-              <span className="old-price">
-                $
-                {(
-                  product.price /
-                  (1 - product.discountPercentage / 100)
-                ).toFixed(2)}
-              </span>
-            )}
-          </div>
-          <div className="rating">
-            Rating: {product.rating} ⭐ ({product.stock} in stock)
-          </div>
-          <button
-            className="add-to-cart-button"
-            onClick={() => {
-              // Logic to add product to cart
-              console.log("Product added to cart:", product);
-            }}
-          >
+          <p className="product-price">${product.price.toFixed(2)}</p>
+          <button className="add-to-cart-button" onClick={addToCart}>
             Add to Cart
           </button>
         </div>
-      </div>
-      <div className="product-reviews">
-        <h2>Reviews</h2>
-        {product.reviews?.length > 0 ? (
-          <ul className="reviews-list">
-            {product.reviews.map((review, index) => (
-              <li key={index} className="review-item">
-                <strong>{review.reviewerName}</strong>: {review.comment} (
-                {review.rating} ⭐)
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No reviews yet.</p>
-        )}
       </div>
     </div>
   );

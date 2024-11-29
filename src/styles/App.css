@@ -22,3 +22,17 @@
     padding: 15px;
   }
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  min-height: 80vh; /* Ensures footer appears at the bottom */
+  padding: 20px;
+}
+
+footer {
+  margin-top: auto; /* Push footer to the bottom if content is short */
+}
