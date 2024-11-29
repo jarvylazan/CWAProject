@@ -1,40 +1,230 @@
+/* Resetting some default styling */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4; /* Optional: Light background for better visibility */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Product Detail Layout */
 .product-detail {
   display: flex;
-  align-items: flex-start;
+  height: 100vh; /* Full screen height */
   gap: 20px;
   padding: 20px;
+  position: relative;
 }
 
+/* Product Image (Left Side) */
 .product-detail-image {
-  max-width: 400px;
-  height: auto;
+  width: 50vw; /* Take up half of the viewport width */
+  height: 100vh; /* Full height of the viewport */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+  position: absolute; /* Positioning the image to fill only the left side */
+  left: 0;
+  top: 0;
   border-radius: 8px;
-  object-fit: contain;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
 }
 
+/* Product Info Section (Right Side) */
 .product-info {
-  flex: 1;
+  margin-left: 50vw; /* Offset by half of the viewport width to ensure the right section */
+  padding: 20px;
+  max-width: 50vw; /* Limit the width to the right half of the screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left; /* Ensure text is aligned to the left */
+  position: relative;
+  top: 0; /* Ensure that product details start at the top */
 }
 
+/* Heading and Text */
 .product-info h1 {
   font-size: 2rem;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .product-info p {
   margin-bottom: 15px;
   font-size: 1.2rem;
+  color: #555;
 }
 
+/* Price Section */
+.product-prices {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.original-price {
+  color: grey;
+  font-size: 1.3rem;
+}
+
+.discount-price {
+  color: green;
+  font-size: 1.5rem;
+}
+
+/* Rating Section */
+.product-rating {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.product-rating .bi {
+  color: #ffc107; /* Yellow for selected stars */
+}
+
+/* Availability Status */
+.product-availability {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.product-availability.available {
+  color: #28a745; /* Green for available */
+}
+
+/* Add to Cart Button */
 .add-to-cart-button {
-  padding: 10px 20px;
+  padding: 5px 15px; /* Smaller button */
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .add-to-cart-button:hover {
   background-color: #0056b3;
+}
+
+/* QR and Reviews Section: Flex Layout */
+.product-qr-reviews {
+  display: flex;
+  gap: 20px; /* Space between QR code and reviews */
+  margin-top: 10px;
+  align-items: flex-start; /* Align items from top (vertically) */
+}
+
+/* QR Code Section */
+.product-qr {
+  text-align: left; /* Align QR code to the left side */
+  flex: 1; /* Allow the QR code to take equal space */
+}
+
+.product-qr h2 {
+  margin-bottom: 10px;
+}
+
+/* Reviews Section */
+.product-reviews {
+  flex: 1; /* Allow the reviews to take equal space */
+  margin-top: 0;
+  text-align: left; /* Align text to the left */
+}
+
+.review {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.review h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.review p {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.review-rating {
+  font-size: 1rem;
+  color: #ffc107; /* Star color */
+}
+
+/* Review Form Styling */
+.product-reviews form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.star-rating span {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.submit-review-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-review-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .product-detail {
+    flex-direction: column; /* Stack product image and info vertically */
+  }
+
+  .product-detail-image {
+    width: 100vw; /* Make image take full width */
+    height: 50vh; /* Make image height half the viewport height */
+    position: relative; /* Reset absolute position for smaller screens */
+  }
+
+  .product-info {
+    margin-left: 0; /* Reset margin for product info */
+    padding: 10px;
+    width: 100%; /* Make it take full width on mobile */
+    max-width: 100%;
+  }
+
+  .product-prices {
+    font-size: 1.3rem;
+  }
+
+  .add-to-cart-button {
+    padding: 10px 20px;
+    font-size: 1.2rem; /* Increase font size for better mobile accessibility */
+  }
+
+  .product-qr-reviews {
+    flex-direction: column; /* Stack QR code and reviews vertically on mobile */
+  }
+
+  .product-qr {
+    margin-top: 15px;
+  }
+
+  .product-reviews {
+    margin-top: 20px;
+  }
 }

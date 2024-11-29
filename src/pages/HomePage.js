@@ -24,28 +24,32 @@ const HomePage = ({ searchQuery }) => {
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
-  }, []); // This effect only runs once when the component mounts
+  }, []);
 
   useEffect(() => {
-    // Filter products based on category and search query
-    let filtered = products;
+    // Function to filter products by category and search query
+    const filterProducts = (category, query) => {
+      let filtered = products;
 
-    // Filter by category
-    if (selectedCategory && selectedCategory !== "All Categories") {
-      filtered = filtered.filter((product) =>
-        product.category && product.category.toLowerCase().includes(selectedCategory.toLowerCase())
-      );
-    }
+      // Filter by category
+      if (category && category !== "All Categories") {
+        filtered = filtered.filter((product) =>
+          product.category && product.category.toLowerCase().includes(category.toLowerCase())
+        );
+      }
 
-    // Filter by search query (case-insensitive search for products by title)
-    if (searchQuery) {
-      filtered = filtered.filter((product) =>
-        product.title && product.title.toLowerCase().includes(searchQuery.toLowerCase()) // Ensure 'title' exists
-      );
-    }
+      // Filter by search query (case-insensitive search for products by title)
+      if (query) {
+        filtered = filtered.filter((product) =>
+          product.title && product.title.toLowerCase().includes(query.toLowerCase()) // Ensure 'title' exists
+        );
+      }
 
-    setFilteredProducts(filtered); // Update the filtered products state
-  }, [searchQuery, selectedCategory, products]); // Re-run filtering whenever these dependencies change
+      setFilteredProducts(filtered); // Update the filtered products state
+    };
+
+    filterProducts(selectedCategory, searchQuery); // Re-filter products when searchQuery or selectedCategory changes
+  }, [searchQuery, selectedCategory, products]); // Dependencies include products, selectedCategory, and searchQuery
 
   const filterByCategory = (category) => {
     setSelectedCategory(category); // Update selected category and re-filter products
