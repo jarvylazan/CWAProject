@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
-const Header = () => {
+const Header = ({ onSearch }) => {
+  // Handle the search input change
+  const handleSearchChange = (e) => {
+    onSearch(e.target.value); // Update the search query in the parent component (HomePage)
+  };
+
   return (
     <header className="header bg-light d-flex align-items-center justify-content-between px-4 py-2">
       {/* Logo and Store Name */}
@@ -32,10 +37,13 @@ const Header = () => {
           placeholder="Search products"
           className="form-control"
           style={{ width: "1100px" }}
+          onChange={handleSearchChange} // Trigger the search on change
         />
+        {/* Keep the Search Button */}
         <button
           className="btn btn-outline-success ms-2"
           style={{ backgroundColor: "white", color: "green", borderColor: "green" }}
+          onClick={() => onSearch(document.querySelector("input").value)} // Optionally trigger search on button click
         >
           Search
         </button>

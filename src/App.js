@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
@@ -7,16 +7,21 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./styles/App.css";
 
-
 const App = () => {
+  const [searchQuery, setSearchQuery] = useState(""); // Manage search query state
+
   return (
     <Router>
-      <Header />
+      {/* Pass search query handler to Header */}
+      <Header onSearch={setSearchQuery} />
+
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* Pass searchQuery to HomePage */}
+        <Route path="/" element={<HomePage searchQuery={searchQuery} />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
       </Routes>
+
       <Footer />
     </Router>
   );
