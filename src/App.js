@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./styles/App.css";
 
+
 const App = () => {
   return (
     <Router>
