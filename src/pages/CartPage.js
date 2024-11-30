@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Checkout from "../components/Checkout";
 import "../styles/CartPage.css";
 
 const CartPage = () => {
@@ -12,13 +13,21 @@ const CartPage = () => {
   }, []);
 
   const decreaseQuantity = (id) => {
-    const updatedCart = cartItems.map((item) => (item.id === id ? { ...item, quantity: Math.max((item.quantity || 1) - 1, 1) } : item));
+    const updatedCart = cartItems.map((item) =>
+      item.id === id
+        ? { ...item, quantity: Math.max((item.quantity || 1) - 1, 1) }
+        : item
+    );
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const increaseQuantity = (id) => {
-    const updatedCart = cartItems.map((item) => (item.id === id ? { ...item, quantity: (item.quantity || 1) + 1 } : item));
+    const updatedCart = cartItems.map((item) =>
+      item.id === id
+        ? { ...item, quantity: (item.quantity || 1) + 1 }
+        : item
+    );
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
@@ -29,7 +38,14 @@ const CartPage = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * (1 - item.discountPercentage / 100) * (item.quantity || 1), 0).toFixed(2);
+  const totalPrice = cartItems
+    .reduce(
+      (acc, item) =>
+        acc +
+        item.price * (1 - item.discountPercentage / 100) * (item.quantity || 1),
+      0
+    )
+    .toFixed(2);
 
   return (
     <div className="cart-page">
@@ -46,25 +62,43 @@ const CartPage = () => {
                   <div className="cart-item-details">
                     <h5>{item.title}</h5>
                     <p>
-                      <span style={{ color: "red", fontWeight: "bold" }}>${(item.price * (1 - item.discountPercentage / 100)).toFixed(2)}</span>
+                      <span style={{ color: "red", fontWeight: "bold" }}>
+                        $
+                        {(
+                          item.price *
+                          (1 - item.discountPercentage / 100)
+                        ).toFixed(2)}
+                      </span>
                       <s className="original-price">${item.price.toFixed(2)}</s>
                     </p>
                   </div>
                   <div className="cart-item-actions">
                     <div className="quantity-controls">
-                      <button className="quantity-btn" onClick={() => decreaseQuantity(item.id)}>
+                      <button
+                        className="quantity-btn"
+                        onClick={() => decreaseQuantity(item.id)}
+                      >
                         -
                       </button>
                       <span>{item.quantity || 1}</span>
-                      <button className="quantity-btn" onClick={() => increaseQuantity(item.id)}>
+                      <button
+                        className="quantity-btn"
+                        onClick={() => increaseQuantity(item.id)}
+                      >
                         +
                       </button>
                     </div>
-                    <div class="item-btns">
-                      <button onClick={() => removeItem(item.id)} className="shared-btn remove-btn">
+                    <div className="item-btns">
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        className="shared-btn remove-btn"
+                      >
                         Remove
                       </button>
-                      <Link to={`/product/${item.id}`} className="shared-btn view-product-btn">
+                      <Link
+                        to={`/product/${item.id}`}
+                        className="shared-btn view-product-btn"
+                      >
                         View Product
                       </Link>
                     </div>
@@ -76,6 +110,11 @@ const CartPage = () => {
           </>
         )}
       </div>
+
+      {/* Pass cartItems and totalPrice as props to Checkout */}
+      {cartItems.length > 0 && (
+        <Checkout cartItems={cartItems} totalPrice={totalPrice} />
+      )}
     </div>
   );
 };

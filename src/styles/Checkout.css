@@ -1,0 +1,50 @@
+.checkout-container {
+    max-width: 600px; /* Set the maximum width */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add some padding */
+    background: #fff; /* Optional: Add a background */
+    border-radius: 10px; /* Optional: Round the corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  }
+  
+  .checkout-container h1,
+  .checkout-container h2 {
+    text-align: center; /* Center align headings */
+  }
+  
+  .order-summary,
+  .payment-method,
+  .shipping-address {
+    margin-bottom: 20px; /* Space between sections */
+  }
+  
+  .order-summary p,
+  .payment-method label,
+  .shipping-address input {
+    margin: 10px 0; /* Add spacing for readability */
+  }
+  
+  .shipping-address input {
+    width: 100%; /* Make inputs full width */
+    padding: 10px; /* Add padding inside inputs */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Round the input corners */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .confirm-order-btn {
+    width: 100%; /* Full-width button */
+    padding: 10px; /* Add padding */
+    background-color: green; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Round the button corners */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  .confirm-order-btn:hover {
+    background-color: darkgreen; /* Darken button on hover */
+  }
+  .payment-method > * {
+    padding-left: 5px;
+  }

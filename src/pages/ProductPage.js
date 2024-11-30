@@ -50,10 +50,23 @@ const ProductPage = () => {
 
   const addToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = [...cart, product];
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
+    // Check if the product already exists in the cart
+    const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+  
+    if (existingProductIndex > -1) {
+      // If it exists, update the quantity
+      cart[existingProductIndex].quantity =
+        (cart[existingProductIndex].quantity || 1) + 1;
+    } else {
+      // If it doesn't exist, add the product with an initial quantity of 1
+      cart.push({ ...product, quantity: 1 });
+    }
+  
+    localStorage.setItem("cart", JSON.stringify(cart));
     alert(`${product.title} added to cart!`);
   };
+  
 
   const discountedPrice =
     product.price - (product.price * product.discountPercentage) / 100;
