@@ -112,5 +112,19 @@
   color: #28a745; /* Change the original price to green */
   font-size: 0.9rem; /* Slightly smaller font for original price */
 }
+.add-to-cart-btn {
+  margin-top: 16px;
+  background-color: white; /* White background */
+  color: #007bff; /* Blue text */
+  border: 2px solid #007bff; /* Blue outline */
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 
 

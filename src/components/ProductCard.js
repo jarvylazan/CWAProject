@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/ProductCard.css"; // Assuming CSS is in the right folder
+import "../styles/ProductCard.css"; // Ensure CSS is correctly configured
 
 const ProductCard = ({ product }) => {
   // Calculate discounted price
@@ -13,13 +13,13 @@ const ProductCard = ({ product }) => {
     const emptyStars = 5 - (fullStars + halfStars);
 
     let stars = [];
-    // Add full stars (yellow)
+    // Add full stars
     for (let i = 0; i < fullStars; i++) stars.push(<i className="bi bi-star-fill filled" key={"full-" + i}></i>);
-    // Add half star (if applicable)
+    // Add half star
     if (halfStars) stars.push(<i className="bi bi-star-half filled" key="half"></i>);
-    // Add empty stars (gray)
+    // Add empty stars
     for (let i = 0; i < emptyStars; i++) stars.push(<i className="bi bi-star empty" key={"empty-" + i}></i>);
-    
+
     return stars;
   };
 
@@ -40,10 +40,12 @@ const ProductCard = ({ product }) => {
             <span className="discounted-price">${discountedPrice}</span>{" "}
             <span className="original-price">${product.price.toFixed(2)}</span>
           </p>
-
-          {/* "View Details" button */}
-          <button className="view-details-btn">View Details</button>
         </div>
+      </Link>
+
+      {/* "View Details" button */}
+      <Link to={`/product/${product.id}`} className="view-details-btn">
+        View Details
       </Link>
     </div>
   );
