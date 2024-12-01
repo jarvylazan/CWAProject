@@ -176,72 +176,67 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* Customer Reviews Section */}
       <div className="product-reviews">
-        <h2>Customer Reviews</h2>
-        {product.reviews && product.reviews.length > 0 ? (
-          product.reviews.map((review, index) => (
-            <div key={index} className="review">
-              {/* Reviewer's Name in Bold with Rating in Parentheses */}
-              <h4>
-                <strong>{review.reviewerName}</strong> (Rating: {review.rating})
-              </h4>
-
-              {/* Review Description */}
-              <p>{review.comment}</p>
-
-              {/* Review Date */}
-              <p className="review-date">{new Date(review.date).toLocaleDateString()}</p>
-            </div>
-          ))
-        ) : (
-          <p>No reviews available.</p>
-        )}
-
-        {/* Review Form */}
-        <h3>Leave a Review</h3>
-        <form onSubmit={handleReviewSubmit}>
-          <div className="form-group">
-            <label>Rating:</label>
-            <div className="star-rating">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span
-                  key={star}
-                  onClick={() => setNewReview({ ...newReview, rating: star })}
-                  style={{
-                    cursor: "pointer",
-                    color: star <= newReview.rating ? "#ffc107" : "grey",
-                  }}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="form-group">
-            <textarea
-              value={newReview.description}
-              onChange={(e) => setNewReview({ ...newReview, description: e.target.value })}
-              rows="4"
-              placeholder="Write a review here..."
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              type="text"
-              value={newReview.name}
-              onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
-              placeholder="Your name (Optional)"
-            />
-          </div>
-
-          <button type="submit" className="submit-review-button">
-            Submit Review
-          </button>
-        </form>
+  {/* Customer Reviews Heading */}
+  <h2>Customer Reviews</h2>
+  {product.reviews && product.reviews.length > 0 ? (
+    product.reviews.map((review, index) => (
+      <div key={index} className="review">
+        <h4>
+          <strong>{review.reviewerName}</strong> (Rating: {review.rating})
+        </h4>
+        <p>{review.comment}</p>
+        <p className="review-date">{new Date(review.date).toLocaleDateString()}</p>
       </div>
+    ))
+  ) : (
+    <p>No reviews available.</p>
+  )}
+
+  {/* Leave a Review Heading */}
+  <h3>Leave a Review</h3>
+  <form onSubmit={handleReviewSubmit}>
+    <div className="form-group">
+      <label>Rating:</label>
+      <div className="star-rating">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            onClick={() => setNewReview({ ...newReview, rating: star })}
+            style={{
+              cursor: "pointer",
+              color: star <= newReview.rating ? "#ffc107" : "grey",
+            }}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div className="form-group">
+      <textarea
+        value={newReview.description}
+        onChange={(e) => setNewReview({ ...newReview, description: e.target.value })}
+        rows="4"
+        placeholder="Write a review here..."
+      />
+    </div>
+
+    <div className="form-group">
+      <input
+        type="text"
+        value={newReview.name}
+        onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+        placeholder="Your name (Optional)"
+      />
+    </div>
+
+    <button type="submit" className="submit-review-button">
+      Submit Review
+    </button>
+  </form>
+</div>
     </div>
   );
 };

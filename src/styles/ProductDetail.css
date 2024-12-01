@@ -142,8 +142,19 @@ body {
 
 .review {
   margin-bottom: 20px;
-  padding: 10px;
+  padding-left: 810px;
   border-radius: 5px;
+  padding-bottom: 20px;
+}
+
+.product-reviews h2 {
+  padding: 20px 0 20px 810px; /* Top, Right, Bottom, Left */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.product-reviews h3 {
+  padding: 20px 0 20px 235px; /* Top, Right, Bottom, Left */
+  margin-bottom: 20px; /* Space below the heading */
 }
 
 .review h4 {
@@ -161,20 +172,53 @@ body {
   color: #ffc107; /* Star color */
 }
 
-/* Review Form Styling */
+/* Updated Form Styles */
 .product-reviews form {
-  margin-top: 20px;
+  padding: 20px 810px; /* Top/Bottom, Left/Right */
+  margin-top: 20px; /* Optional margin to separate from the heading */
 }
 
-.form-group {
-  margin-bottom: 15px;
+.product-reviews form .form-group {
+  margin-bottom: 20px; /* Space between form groups */
 }
 
+.product-reviews form textarea,
+.product-reviews form input {
+  width: 100%; /* Ensure the input takes the full available width */
+  padding: 15px; /* Increase padding for a larger feel */
+  font-size: 18px; /* Larger font size for better readability */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 8px; /* Rounded corners */
+  box-sizing: border-box; /* Ensures padding is included in width/height */
+}
+
+.product-reviews form textarea {
+  width: 400px; /* Increase height for the textarea */
+  resize: horizontal; /* Allow resizing only vertically */
+}
+
+.product-reviews form input {
+  height: 50px; /* Larger height for input fields */
+}
+
+.product-reviews form .submit-review-button {
+  background-color: #007bff; /* Button background color */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.product-reviews form .submit-review-button:hover {
+  background-color: #0056b3; /* Button hover color */
+}
+
+/* Stars Rating */
 .star-rating span {
   font-size: 1.5rem;
   cursor: pointer;
 }
 
+/* Submit Button */
 .submit-review-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -187,6 +231,41 @@ body {
 .submit-review-button:hover {
   background-color: #0056b3;
 }
+
+/* Section Heading */
+.section-heading {
+  margin-bottom: 20px;
+  padding-left: 810px; /* Align with reviews */
+  border-radius: 5px; /* Optional for consistency */
+  padding-bottom: 20px; /* Match review padding */
+}
+
+/* Rating Section */
+.rating-section {
+  margin-bottom: 20px;
+  padding-left: 810px; /* Align with reviews */
+  padding-bottom: 20px; /* Match review padding */
+}
+.product-reviews form input {
+  width: 400px; /* Set a fixed width for the input */
+  height: 50px; /* Increase height for better usability */
+  padding: 15px; /* Increase padding for a larger feel */
+  font-size: 18px; /* Improve readability */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+.product-reviews form .submit-review-button {
+  padding: 2px 60px; /* Increase padding for a larger button */
+  font-size: 18px; /* Larger font size for better readability */
+  background-color: #007bff; /* Button background color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background color change on hover */
+}
+
 
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
