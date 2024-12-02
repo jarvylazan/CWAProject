@@ -1,0 +1,97 @@
+.order-confirmation {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .order-confirmation h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .order-confirmation .order-summary {
+    margin-bottom: 2rem;
+  }
+  
+  .order-confirmation .order-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .order-confirmation .order-summary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+  
+  .order-confirmation .order-summary ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
+  
+  .order-confirmation .order-summary ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .order-confirmation .order-summary p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #555;
+  }
+  
+  .order-confirmation .order-summary strong {
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .order-confirmation button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-confirmation button:hover {
+    background-color: #218838;
+  }
+  
+  .order-confirmation button:focus {
+    outline: none;
+  }
+  
+  .order-confirmation button:active {
+    background-color: #1e7e34;
+  }
+  
+  @media (max-width: 768px) {
+    .order-confirmation {
+      padding: 1rem;
+    }
+  
+    .order-confirmation .order-summary h2,
+    .order-confirmation .order-summary ul li,
+    .order-confirmation .order-summary p {
+      font-size: 0.9rem;
+    }
+  
+    .order-confirmation button {
+      font-size: 0.9rem;
+    }
+  }
+  
