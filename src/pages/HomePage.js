@@ -3,20 +3,20 @@ import ProductCard from "../components/ProductCard";
 import "../styles/HomePage.css";
 
 const HomePage = ({ searchQuery }) => {
+  // State management for products and filters
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories] = useState(["All Categories", "Beauty", "Fragrances", "Furniture", "Groceries"]);
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
+  // Fetch product data when the component mounts
   useEffect(() => {
-    // Fetch product data
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((data) => {
-        // Ensure that products are correctly fetched
         if (data && data.products) {
-          setProducts(data.products);
-          setFilteredProducts(data.products); // Initially display all products
+          setProducts(data.products); // Store all products
+          setFilteredProducts(data.products); // Display all products initially
         } else {
           console.error("Error: No products found in the response.");
         }
@@ -26,40 +26,41 @@ const HomePage = ({ searchQuery }) => {
       });
   }, []);
 
+  // Filter products by category and search query
   useEffect(() => {
-    // Function to filter products by category and search query
     const filterProducts = (category, query) => {
       let filtered = products;
 
-      // Filter by category
+      // Filter by selected category (exclude "All Categories")
       if (category && category !== "All Categories") {
         filtered = filtered.filter((product) =>
           product.category && product.category.toLowerCase().includes(category.toLowerCase())
         );
       }
 
-      // Filter by search query (case-insensitive search for products by title)
+      // Filter by search query
       if (query) {
         filtered = filtered.filter((product) =>
-          product.title && product.title.toLowerCase().includes(query.toLowerCase()) // Ensure 'title' exists
+          product.title && product.title.toLowerCase().includes(query.toLowerCase())
         );
       }
 
-      setFilteredProducts(filtered); // Update the filtered products state
+      setFilteredProducts(filtered); // Update filtered products
     };
 
-    filterProducts(selectedCategory, searchQuery); // Re-filter products when searchQuery or selectedCategory changes
-  }, [searchQuery, selectedCategory, products]); // Dependencies include products, selectedCategory, and searchQuery
+    filterProducts(selectedCategory, searchQuery); // Re-run filter on dependency changes
+  }, [searchQuery, selectedCategory, products]);
 
+  // Handle category selection
   const filterByCategory = (category) => {
-    setSelectedCategory(category); // Update selected category and re-filter products
+    setSelectedCategory(category); // Update category state
   };
 
   return (
     <div className="homepage">
       <h1>Products</h1>
 
-      {/* Category Filter */}
+      {/* Dropdown for Category Filter */}
       <div className="dropdown-container">
         <select
           id="category-select"
@@ -77,7 +78,7 @@ const HomePage = ({ searchQuery }) => {
       {/* Display Filtered Products */}
       <div className="product-list">
         {filteredProducts.length === 0 ? (
-          <p>No products found</p> // Message if no products match the filters
+          <p>No products found</p> // Show message if no products match the filters
         ) : (
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

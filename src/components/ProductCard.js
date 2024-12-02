@@ -12,7 +12,8 @@ const ProductCard = ({ product }) => {
     const halfStars = rating - fullStars >= 0.5 ? 1 : 0;
     const emptyStars = 5 - (fullStars + halfStars);
 
-    let stars = [];
+    let stars = []
+    
     // Add full stars
     for (let i = 0; i < fullStars; i++) stars.push(<i className="bi bi-star-fill filled" key={"full-" + i}></i>);
     // Add half star
@@ -21,6 +22,13 @@ const ProductCard = ({ product }) => {
     for (let i = 0; i < emptyStars; i++) stars.push(<i className="bi bi-star empty" key={"empty-" + i}></i>);
 
     return stars;
+  };
+
+  // Handle "Add to Cart" button click
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // Prevent card click
+    // Add "Add to Cart" logic here
+    console.log(`Added ${product.title} to cart.`);
   };
 
   return (
@@ -43,10 +51,10 @@ const ProductCard = ({ product }) => {
         </div>
       </Link>
 
-      {/* "View Details" button */}
-      <Link to={`/product/${product.id}`} className="view-details-btn">
-        View Details
-      </Link>
+      {/* "Add to Cart" button */}
+      <button className="add-to-cart-btn" onClick={handleAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 };
