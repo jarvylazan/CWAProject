@@ -25,7 +25,6 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product.id}`} className="product-card-link">
         <img src={product.thumbnail} alt={product.title} className="product-image" />
         <div className="product-details">
           <h2>{product.title}</h2>
@@ -37,11 +36,10 @@ const ProductCard = ({ product }) => {
 
           {/* Price details */}
           <p className="product-price">
-            <span className="discounted-price">${discountedPrice}</span>{" "}
-            <span className="original-price">${product.price.toFixed(2)}</span>
+            <span className="discounted-price text-success">${discountedPrice}</span>{" "}
+            <span className="original-price text-muted">${product.price.toFixed(2)}</span>
           </p>
         </div>
-      </Link>
 
       {/* "View Details" button */}
       <Link to={`/product/${product.id}`} className="view-details-btn">

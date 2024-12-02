@@ -69,11 +69,6 @@ body {
   gap: 10px;
 }
 
-.original-price {
-  color: grey;
-  font-size: 1.3rem;
-}
-
 .discount-price {
   color: green;
   font-size: 1.5rem;

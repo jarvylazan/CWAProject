@@ -57,12 +57,6 @@ h1 {
   font-size: 16px;
 }
 
-.original-price {
-  font-size: 14px;
-  color: #aaa;
-  margin-left: 5px;
-}
-
 .cart-item-actions {
   display: flex;
   flex-direction: column;

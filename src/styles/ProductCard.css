@@ -51,16 +51,14 @@
 }
 
 .discounted-price {
-  color: #28a745; /* Green color for discounted price */
-  font-weight: bold;
+  /* color: #28a745; Green color for discounted price */
   font-size: 1rem; /* Standard font size for price */
   margin-right: 8px;
 }
 
 .original-price {
-  text-decoration: line-through;
-  color: #dc3545; /* Red color for original price */
-  font-size: 0.9rem; /* Slightly smaller font for original price */
+  text-decoration: line-through; /* Red color for original price */
+  font-size: 1rem; /* Slightly smaller font for original price */
 }
 
 .view-details-btn {
@@ -97,20 +95,6 @@
 /* Styling for empty stars (gray) */
 .product-rating .empty {
   color: #ddd; /* Light gray for empty stars */
-}
-
-.discounted-price {
-  color: #28a745; /* Green color for discounted price */
-  font-weight: bold;
-  font-size: 1rem; /* Standard font size for price */
-  margin-right: 8px;
-}
-
-/* Styling for original price */
-.original-price {
-  text-decoration: line-through;
-  color: #28a745; /* Change the original price to green */
-  font-size: 0.9rem; /* Slightly smaller font for original price */
 }
 .add-to-cart-btn {
   margin-top: 16px;

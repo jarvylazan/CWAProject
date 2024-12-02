@@ -42,10 +42,6 @@
   text-align: center;
 }
 
-.product-card:hover {
-  transform: scale(1.05); /* Slight hover effect */
-}
-
 /* Product Image */
 .product-card img {
   width: 100%; /* Ensure proper scaling */
