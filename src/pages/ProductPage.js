@@ -90,29 +90,28 @@ const ProductPage = () => {
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     const { rating, description, name } = newReview;
-
-    // If no name provided, set as 'Anonymous'
     const userName = name || "Anonymous";
 
-    // Add new review to the list
     const updatedReviews = [
       ...product.reviews,
       {
         rating,
         comment: description,
         reviewerName: userName,
-        reviewerEmail: "", // Optionally add email or leave blank
         date: new Date().toISOString(),
       },
     ];
 
-    // Update the product state with new reviews
+    // Recalculate the average rating
+    const totalRating = updatedReviews.reduce((sum, review) => sum + review.rating, 0);
+    const averageRating = updatedReviews.length > 0 ? totalRating / updatedReviews.length : 0;
+
     setProduct({
       ...product,
       reviews: updatedReviews,
+      rating: averageRating,
     });
 
-    // Reset the form
     setNewReview({
       rating: 0,
       description: "",
@@ -162,7 +161,8 @@ const ProductPage = () => {
             Availability: {getAvailabilityStatus(product.stock)}
           </p>
 
-          <button className="add-to-cart-button" onClick={addToCart}>
+          <button  className="btn btn-primary" 
+  style={{ border: "2px solid white" }}  onClick={addToCart}>
             Add to Cart
           </button>
 
@@ -232,7 +232,8 @@ const ProductPage = () => {
       />
     </div>
 
-    <button type="submit" className="submit-review-button">
+    <button type="submit"   className="btn btn-primary" 
+  style={{ border: "2px solid white" }} >
       Submit Review
     </button>
   </form>

@@ -75,11 +75,6 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.view-details-btn:hover {
-  background-color: rgb(82, 82, 249); /* Button background color on hover */
-  color: white; /* Change text color on hover */
-}
-
 .product-rating .bi-star-fill {
   color: #ffc107 !important; /* Yellow color for filled stars */
 }
