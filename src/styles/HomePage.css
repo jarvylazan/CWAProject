@@ -6,7 +6,7 @@
 }
 
 .dropdown-container {
-  width: calc((300px * 4) + (20px * 3)); /* Match the width of 4 cards and 3 gaps */
+  width: calc((300px * 4) + (20px * 3));
   margin: 20px auto;
 }
 
@@ -16,7 +16,6 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
 }
 
 /* Product List Container */
@@ -25,14 +24,13 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  padding: 20px;
+  width: 100%;
 }
 
 /* Individual Product Card */
 .product-card {
-  max-width: 300px; /* Limit card width */
-  flex: 1 1 calc(25% - 20px); /* Adjust cards per row */
-  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -42,27 +40,22 @@
   text-align: center;
 }
 
-/* Product Image */
 .product-card img {
-  width: 100%; /* Ensure proper scaling */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
   margin-bottom: 10px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .dropdown-container {
-    width: 100%;
-  }
-  .product-list .product-card {
-    flex: 1 1 calc(50% - 20px); /* Two cards per row on smaller screens */
+  .product-card {
+    width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 480px) {
-  .product-list .product-card {
-    flex: 1 1 100%; /* One card per row on very small screens */
+  .product-card {
+    width: 100%;
   }
 }

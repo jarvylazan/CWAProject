@@ -12,10 +12,6 @@
   justify-content: space-between; /* Ensure content is spaced evenly */
 }
 
-.product-card-link {
-  text-decoration: none;
-  color: inherit;
-}
 
 .product-image {
   width: 100%;
@@ -32,15 +28,15 @@
 }
 
 .product-title {
-  font-size: 1.2rem; /* Adjusted font size for better readability */
+  font-size: 1.2rem; 
   font-weight: bold;
   margin-bottom: 8px;
-  color: #333; /* Dark color for product title */
+  color: #333;
 }
 
 .product-rating {
   font-size: 0.9rem;
-  color: #6c757d; /* Light gray color for rating */
+  color: #6c757d;
   margin-bottom: 8px;
 }
 
@@ -51,59 +47,33 @@
 }
 
 .discounted-price {
-  /* color: #28a745; Green color for discounted price */
-  font-size: 1rem; /* Standard font size for price */
+  font-size: 1rem; 
   margin-right: 8px;
 }
 
 .original-price {
-  text-decoration: line-through; /* Red color for original price */
-  font-size: 1rem; /* Slightly smaller font for original price */
+  text-decoration: line-through;
+  font-size: 1rem; 
 }
 
-.view-details-btn {
-  width: 100%; /* Make the button fill the width of the parent container */
-  padding: 8px 16px;
-  background-color: white;
-  border: 2px solid rgb(82, 82, 249);
-  color: rgb(82, 82, 249);
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  transition: background-color 0.3s, color 0.3s;
-}
 
 .product-rating .bi-star-fill {
-  color: #ffc107 !important; /* Yellow color for filled stars */
+  color: #ffc107 !important; 
 }
 
 .product-rating .bi-star {
-  color: #ddd !important; /* Light gray for empty stars */
-}
-/* Styling for filled (yellow) stars */
-.product-rating .filled {
-  color: #ffc107; /* Yellow color for filled stars */
+  color: #ddd !important; 
 }
 
-/* Styling for empty stars (gray) */
+.product-rating .filled {
+  color: #ffc107; 
+}
+
+
 .product-rating .empty {
-  color: #ddd; /* Light gray for empty stars */
+  color: #ddd; 
 }
-.add-to-cart-btn {
-  margin-top: 16px;
-  background-color: white; /* White background */
-  color: #007bff; /* Blue text */
-  border: 2px solid #007bff; /* Blue outline */
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+
 
 
 

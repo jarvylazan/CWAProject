@@ -157,16 +157,6 @@ body {
   margin-bottom: 5px;
 }
 
-.review p {
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.review-rating {
-  font-size: 1rem;
-  color: #ffc107; /* Star color */
-}
-
 /* Updated Form Styles */
 .product-reviews form {
   padding: 20px 810px; /* Top/Bottom, Left/Right */
@@ -192,20 +182,6 @@ body {
   resize: horizontal; /* Allow resizing only vertically */
 }
 
-.product-reviews form input {
-  height: 50px; /* Larger height for input fields */
-}
-
-.product-reviews form .submit-review-button {
-  background-color: #007bff; /* Button background color */
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.product-reviews form .submit-review-button:hover {
-  background-color: #0056b3; /* Button hover color */
-}
 
 /* Stars Rating */
 .star-rating span {
@@ -251,14 +227,7 @@ body {
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
 .product-reviews form .submit-review-button {
-  padding: 2px 60px; /* Increase padding for a larger button */
-  font-size: 18px; /* Larger font size for better readability */
-  background-color: #007bff; /* Button background color */
-  color: white; /* White text */
-  border: none; /* No border */
-  border-radius: 8px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s ease; /* Smooth background color change on hover */
+  padding: 1px 70px; /* Increase padding for a larger button */
 }
 
 
@@ -285,10 +254,6 @@ body {
     font-size: 1.3rem;
   }
 
-  .add-to-cart-button {
-    padding: 10px 20px;
-    font-size: 1.2rem; /* Increase font size for better mobile accessibility */
-  }
 
   .product-qr-reviews {
     flex-direction: column; /* Stack QR code and reviews vertically on mobile */

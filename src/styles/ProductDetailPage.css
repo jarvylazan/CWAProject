@@ -11,7 +11,7 @@
 }
 
 .product-detail-image {
-  max-width: 400px; /* Limit the image size */
+  max-width: 400px; 
   max-height: 400px;
   width: 100%;
   height: auto;
@@ -46,16 +46,5 @@
   margin-bottom: 20px;
 }
 
-.add-to-cart-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-}
 
-.add-to-cart-button:hover {
-  background-color: #0056b3;
-}
+
