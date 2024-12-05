@@ -1,23 +1,23 @@
 .product-card {
-  width: 250px; /* Set the fixed width for the product card */
+  width: 5000px; /* Increased width for a larger appearance */
+  height: 500; /* Allow height to adjust dynamically */
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
+  padding: 1px; /* Reduced padding to make the card less tall */
+  margin: 2px;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center text inside the card */
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ensure content is spaced evenly */
+  justify-content: space-between;
 }
-
 
 .product-image {
   width: 100%;
-  height: auto;
+  height: 30px; /* Fixed height to control elongation */
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   object-fit: cover;
 }
 
@@ -28,34 +28,32 @@
 }
 
 .product-title {
-  font-size: 1.2rem; 
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 0.1rem; 
+  margin-bottom: 2px; /* Reduced spacing */
   color: #333;
 }
 
 .product-rating {
   font-size: 0.9rem;
   color: #6c757d;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .product-price {
   display: flex;
   align-items: baseline;
-  margin-bottom: 30px;
+  margin-bottom: 16px; /* Reduced margin for compact design */
 }
 
 .discounted-price {
   font-size: 1rem; 
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
 .original-price {
   text-decoration: line-through;
-  font-size: 1rem; 
+  font-size: 0.9rem; /* Slightly reduced font size */
 }
-
 
 .product-rating .bi-star-fill {
   color: #ffc107 !important; 
@@ -69,11 +67,6 @@
   color: #ffc107; 
 }
 
-
 .product-rating .empty {
   color: #ddd; 
 }
-
-
-
-
