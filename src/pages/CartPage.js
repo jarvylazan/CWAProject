@@ -20,6 +20,7 @@ const CartPage = () => {
     );
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const increaseQuantity = (id) => {
@@ -30,6 +31,7 @@ const CartPage = () => {
     );
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const removeItem = (id) => {
@@ -76,14 +78,14 @@ const CartPage = () => {
                   <div className="cart-item-actions">
                     <div className="quantity-controls">
                       <button
-                        className="quantity-btn"
+                        className="quantity-btn bg-secondary"
                         onClick={() => decreaseQuantity(item.id)}
                       >
                         -
                       </button>
                       <span>{item.quantity || 1}</span>
                       <button
-                        className="quantity-btn"
+                        className="quantity-btn bg-secondary"
                         onClick={() => increaseQuantity(item.id)}
                       >
                         +
