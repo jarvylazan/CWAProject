@@ -171,9 +171,7 @@ const ProductPage = () => {
             <h3>Product QR Code</h3>
             {id && <QRCodeCanvas value={`https://dummyjson.com/products/${id}`} size={150} />}
           </div>
-        </div>
-      </div>
-      <div className="product-reviews">
+          <div className="product-reviews">
         <h2>Customer Reviews</h2>
         {product.reviews && product.reviews.length > 0 ? (
           product.reviews.map((review, index) => (
@@ -216,6 +214,8 @@ const ProductPage = () => {
             Submit Review
           </button>
         </form>
+      </div>
+        </div>
       </div>
     </div>
   );
