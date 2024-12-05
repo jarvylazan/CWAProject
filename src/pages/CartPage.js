@@ -36,6 +36,7 @@ const CartPage = () => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const totalPrice = cartItems

@@ -61,6 +61,10 @@ const ProductPage = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Dispatch custom cartUpdated event
+    window.dispatchEvent(new Event("cartUpdated"));
+    
     alert(`${product.title} added to cart!`);
   };
 
