@@ -25,21 +25,20 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card">
-        <img src={product.thumbnail} alt={product.title} className="product-image" />
-        <div className="product-details">
-          <h2>{product.title}</h2>
+      <img src={product.thumbnail} alt={product.title} className="product-image" />
+      <div className="product-details">
+        <h2>{product.title}</h2>
 
-          {/* Rating stars and reviews count */}
-          <p className="product-rating">
-            {renderStars(product.rating)} ({product.reviews.length} reviews)
-          </p>
+        {/* Rating stars and reviews count */}
+        <p className="product-rating">
+          {renderStars(product.rating)} ({product.reviews.length} reviews)
+        </p>
 
-          {/* Price details */}
-          <p className="product-price">
-            <span className="discounted-price text-success">${discountedPrice}</span>{" "}
-            <span className="original-price text-muted">${product.price.toFixed(2)}</span>
-          </p>
-        </div>
+        {/* Price details */}
+        <p className="product-price">
+          <span className="discounted-price text-success">${discountedPrice}</span> <span className="original-price text-muted">${product.price.toFixed(2)}</span>
+        </p>
+      </div>
 
       {/* "View Details" button */}
       <Link to={`/product/${product.id}`} className="btn btn-outline-primary">

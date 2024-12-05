@@ -18,10 +18,7 @@ const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
       <div className="cart-item-details">
         <h3>{item.title}</h3>
         <p className="cart-item-price">
-          <span className="discounted-price">${discountedPrice}</span>{" "}
-          {item.discountPercentage && (
-            <span className="original-price">${item.price.toFixed(2)}</span>
-          )}
+          <span className="discounted-price">${discountedPrice}</span> {item.discountPercentage && <span className="original-price">${item.price.toFixed(2)}</span>}
         </p>
         <div className="cart-item-actions">
           <div className="quantity-controls">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Checkout from "../components/Checkout";
 import "../styles/CartPage.css";
+import PaymentForm from "../components/PaymentForm";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -116,7 +116,7 @@ const CartPage = () => {
 
       {/* Pass cartItems and totalPrice as props to Checkout */}
       {cartItems.length > 0 && (
-        <Checkout cartItems={cartItems} totalPrice={totalPrice} />
+        <PaymentForm cartItems={cartItems} totalPrice={totalPrice} />
       )}
     </div>
   );
