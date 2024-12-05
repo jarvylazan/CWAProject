@@ -16,8 +16,7 @@ body {
 
 /* Product Detail Layout */
 .product-detail {
-  display: flex;
-  height: 100vh; /* Full screen height */
+  display: flex; /* Full screen height */
   gap: 20px;
   padding: 20px;
   position: relative;
@@ -25,8 +24,7 @@ body {
 
 /* Product Image (Left Side) */
 .product-detail-image {
-  width: 50vw; /* Take up half of the viewport width */
-  height: 100vh; /* Full height of the viewport */
+  width: 50vw; /* Take up half of the viewport width */ /* Full height of the viewport */
   object-fit: cover; /* Ensure the image covers the area without distortion */
   position: absolute; /* Positioning the image to fill only the left side */
   left: 0;
@@ -137,13 +135,12 @@ body {
 
 .review {
   margin-bottom: 20px;
-  padding-left: 810px;
   border-radius: 5px;
   padding-bottom: 20px;
 }
 
 .product-reviews h2 {
-  padding: 20px 0 20px 810px; /* Top, Right, Bottom, Left */
+
   margin-bottom: 20px; /* Space below the heading */
 }
 
@@ -159,7 +156,6 @@ body {
 
 /* Updated Form Styles */
 .product-reviews form {
-  padding: 20px 810px; /* Top/Bottom, Left/Right */
   margin-top: 20px; /* Optional margin to separate from the heading */
 }
 
@@ -206,7 +202,7 @@ body {
 /* Section Heading */
 .section-heading {
   margin-bottom: 20px;
-  padding-left: 810px; /* Align with reviews */
+
   border-radius: 5px; /* Optional for consistency */
   padding-bottom: 20px; /* Match review padding */
 }
@@ -214,7 +210,7 @@ body {
 /* Rating Section */
 .rating-section {
   margin-bottom: 20px;
-  padding-left: 810px; /* Align with reviews */
+
   padding-bottom: 20px; /* Match review padding */
 }
 .product-reviews form input {
@@ -226,10 +222,11 @@ body {
   border-radius: 8px; /* Rounded corners */
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
-.product-reviews form .submit-review-button {
-  padding: 1px 70px; /* Increase padding for a larger button */
-}
 
+.submit-review-button {
+  text-align: center;
+  padding: 10px 20px;
+}
 
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
@@ -260,6 +257,7 @@ body {
   }
 
   .product-qr {
+    /* text-align: */
     margin-top: 15px;
   }
 
