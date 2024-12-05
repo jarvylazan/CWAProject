@@ -72,12 +72,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* Rating Section */
-.product-rating {
-  margin-top: 10px;
-  font-size: 1.5rem;
-}
-
 .product-rating .bi {
   color: #ffc107; /* Yellow for selected stars */
 }

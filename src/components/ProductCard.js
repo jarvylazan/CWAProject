@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/ProductCard.css"; // Ensure CSS is correctly configured
 
 const ProductCard = ({ product }) => {
   // Calculate discounted price
   const discountedPrice = (product.price * (1 - product.discountPercentage / 100)).toFixed(2);
+  const [currentRating, setCurrentRating] = useState(product.rating);
+  const [reviewsCount, setReviewsCount] = useState(product.reviews.length);
+
+  useEffect(() => {
+    // Fetch reviews from localStorage
+    const fetchReviews = () => {
+      const storedReviews = JSON.parse(localStorage.getItem(`product-${product.id}-reviews`)) || [];
+      const combinedReviews = [...product.reviews, ...storedReviews];
+      const uniqueReviews = Array.from(
+        new Map(combinedReviews.map((r) => [`${r.reviewerName}-${r.comment}-${r.date}`, r])).values()
+      );
+
+      // Calculate average rating
+      const totalRating = uniqueReviews.reduce((sum, review) => sum + review.rating, 0);
+      const averageRating = uniqueReviews.length > 0 ? totalRating / uniqueReviews.length : 0;
+
+      setCurrentRating(averageRating);
+      setReviewsCount(uniqueReviews.length);
+    };
+
+    fetchReviews();
+  }, [product]);
 
   // Function to render stars based on the rating
   const renderStars = (rating) => {
@@ -31,7 +53,7 @@ const ProductCard = ({ product }) => {
 
         {/* Rating stars and reviews count */}
         <p className="product-rating">
-          {renderStars(product.rating)} ({product.reviews.length} reviews)
+          {renderStars(currentRating)} ({reviewsCount} reviews)
         </p>
 
         {/* Price details */}
@@ -41,7 +63,7 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* "View Details" button */}
-      <Link to={`/product/${product.id}`} className="btn btn-outline-primary">
+      <Link to={`/product/${product.id}`} className="btn btn-outline-primary view-details-button">
         View Details
       </Link>
     </div>

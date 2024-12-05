@@ -34,7 +34,7 @@
 }
 
 .product-rating {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #6c757d;
   margin-bottom: 6px;
 }
@@ -69,4 +69,9 @@
 
 .product-rating .empty {
   color: #ddd; 
+}
+
+.view-details-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
