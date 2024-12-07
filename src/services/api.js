@@ -10,8 +10,3 @@ export const fetchProductById = async (id) => {
   const response = await fetch(`${BASE_URL}/products/${id}`);
   return response.json();
 };
-
-export const fetchCategories = async () => {
-  const response = await fetch(`${BASE_URL}/products/categories`);
-  return response.json();
-};

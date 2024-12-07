@@ -7,56 +7,37 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Fetch cart items from localStorage
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(storedCart);
+    // Fetch and set cart items from localStorage
+    setCartItems(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
 
-  const decreaseQuantity = (id) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id
-        ? { ...item, quantity: Math.max((item.quantity || 1) - 1, 1) }
-        : item
-    );
+  const updateCart = (updatedCart) => {
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
-  const increaseQuantity = (id) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id
-        ? { ...item, quantity: (item.quantity || 1) + 1 }
-        : item
-    );
-    setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event("cartUpdated"));
+  const adjustQuantity = (id, delta) => {
+    updateCart(cartItems.map(item =>
+      item.id === id ? { ...item, quantity: Math.max(item.quantity + delta, 1) } : item
+    ));
   };
 
   const removeItem = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event("cartUpdated"));
+    updateCart(cartItems.filter(item => item.id !== id));
   };
 
-  const totalPrice = cartItems
-    .reduce(
-      (acc, item) =>
-        acc +
-        item.price * (1 - item.discountPercentage / 100) * (item.quantity || 1),
-      0
-    )
-    .toFixed(2);
+  const calculatePrice = (item) => (
+    (item.price * (1 - item.discountPercentage / 100) * (item.quantity || 1)).toFixed(2)
+  );
+
+  const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(calculatePrice(item)), 0).toFixed(2);
 
   return (
     <div className="cart-page">
       <h1>Your Cart</h1>
       <div className="cart-container">
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
+        {cartItems.length ? (
           <>
             <div className="cart-items">
               {cartItems.map((item) => (
@@ -64,46 +45,18 @@ const CartPage = () => {
                   <img src={item.thumbnail} alt={item.title} />
                   <div className="cart-item-details">
                     <h5>{item.title}</h5>
-                    <p>
-                      <span style={{ color: "red", fontWeight: "bold" }}>
-                        $
-                        {(
-                          item.price *
-                          (1 - item.discountPercentage / 100)
-                        ).toFixed(2)}
-                      </span>
-                      <s className="original-price">${item.price.toFixed(2)}</s>
-                    </p>
+                    <p><span style={{ color: "red", fontWeight: "bold" }}>${calculatePrice(item)}</span>
+                    <s className="original-price">${item.price.toFixed(2)}</s></p>
                   </div>
                   <div className="cart-item-actions">
                     <div className="quantity-controls">
-                      <button
-                        className="quantity-btn bg-secondary"
-                        onClick={() => decreaseQuantity(item.id)}
-                      >
-                        -
-                      </button>
+                      <button onClick={() => adjustQuantity(item.id, -1)} className="quantity-btn bg-secondary">-</button>
                       <span>{item.quantity || 1}</span>
-                      <button
-                        className="quantity-btn bg-secondary"
-                        onClick={() => increaseQuantity(item.id)}
-                      >
-                        +
-                      </button>
+                      <button onClick={() => adjustQuantity(item.id, 1)} className="quantity-btn bg-secondary">+</button>
                     </div>
                     <div className="item-btns">
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="shared-btn remove-btn"
-                      >
-                        Remove
-                      </button>
-                      <Link
-                        to={`/product/${item.id}`}
-                        className="shared-btn view-product-btn"
-                      >
-                        View Product
-                      </Link>
+                    <button onClick={() => removeItem(item.id)} className="shared-btn remove-btn">Remove</button>
+                    <Link to={`/product/${item.id}`} className="shared-btn view-product-btn">View Product</Link>
                     </div>
                   </div>
                 </div>
@@ -111,13 +64,9 @@ const CartPage = () => {
             </div>
             <h3>Total: ${totalPrice}</h3>
           </>
-        )}
+        ) : <p>Your cart is empty.</p>}
       </div>
-
-      {/* Pass cartItems and totalPrice as props to Checkout */}
-      {cartItems.length > 0 && (
-        <PaymentForm cartItems={cartItems} totalPrice={totalPrice} />
-      )}
+      {cartItems.length > 0 && <PaymentForm cartItems={cartItems} totalPrice={totalPrice} />}
     </div>
   );
 };

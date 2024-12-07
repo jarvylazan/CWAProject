@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
+import { fetchProductById } from "../services/api";
 import "../styles/ProductDetail.css";
 
 const ProductPage = () => {
@@ -15,9 +16,10 @@ const ProductPage = () => {
   const [hoverRating, setHoverRating] = useState(null); // For hover effects on the star rating
 
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchProductById(id);
         const savedReviews = JSON.parse(localStorage.getItem(`product-${id}-reviews`)) || [];
         const combinedReviews = [...(data.reviews || []), ...savedReviews];
         const uniqueReviews = Array.from(
@@ -33,12 +35,13 @@ const ProductPage = () => {
           reviews: uniqueReviews,
           rating: averageRating,
         });
-        setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Failed to fetch product details:", error);
-        setLoading(false);
-      });
+      }
+      setLoading(false);
+    };
+
+    fetchProduct();
   }, [id]);
 
   useEffect(() => {
